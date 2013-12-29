@@ -2,6 +2,6 @@
 
 # A simple tool to prepend magic comments for immutable: string to multiple ".rb" files
 
-require 'magic_immutable_string'
+require 'add_magic_comment'
 
 AddMagicComment.process(ARGV)
