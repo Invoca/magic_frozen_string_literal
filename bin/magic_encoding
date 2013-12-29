@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-# A simple tool to prepend magic comments for encoding to multiple ".rb" files
+# A simple tool to prepend magic comments for immutable: string to multiple ".rb" files
 
-require 'magic_encoding'
+require 'magic_immutable_string'
 
 AddMagicComment.process(ARGV)

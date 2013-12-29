@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# -*- immutable: string -*-
 
 # A simple library to prepend magic comments for encoding to multiple ".rb" files
 
@@ -25,38 +25,26 @@ module AddMagicComment
 
     count = 0
     extensions.each do |ext, comment_style|
-      rbfiles = File.join(directory ,'**', '*.'+ext)
+      rbfiles = File.join(directory, "**", "*.#{ext}")
       Dir.glob(rbfiles).each do |filename|
-        file = File.new(filename, "r+")
+        File.new(filename, "r+") do |file|
+          lines = file.readlines
 
-        lines = file.readlines
+          # remove current encoding comment(s)
+          while lines[0].match(/^-?# ?(-\*-)? ?(im)?mutable/)
+            lines.shift
+          end
 
-        # remove current encoding comment(s)
-        while lines[0].match(/^-?# ?(-\*-)? ?(en)?coding/)
-          lines.shift
+          # set current encoding
+          lines.insert(0, comment_style.sub('{text}', prefix))
+          count += 1
+
+          file.pos = 0
+          file.puts(lines.join)
         end
-
-        # set current encoding
-        lines.insert(0,comment_style.sub('{text}', prefix))
-        count += 1
-
-        file.pos = 0
-        file.puts(lines.join)
-        file.close
       end
     end
 
     puts "Magic comments set for #{count} source files"
   end
-
 end
-
-class String
-  def starts_with?(s)
-    self[0..s.length-1] == s
-  end
-end
-
-
-
-
