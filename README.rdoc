@@ -1,26 +1,26 @@
-= Magic_immutable_string
+= Magic_frozen_string_literal
 
-Magic_immutable_string is a little tool that allows you to quickly 
+Magic_frozen_string_literal is a little tool that allows you to quickly 
 add the magic comment that indicates that the file
-can safely be optimized with the knowledge the string literals
-are immutable.
+can safely have its string literals frozen, as will be the default
+in Ruby 3.0.
 
 Cloned from https://github.com/m-ryan/magic_encoding
 
 == Installation
 
-  gem install magic_immutable_string
+  gem install magic_frozen_string_literal
   
 == Usage
 
 you can call the tool from the console with default parameters like so
 
-  magic_immutable_string
+  magic_frozen_string_literal
 
 this will prepend every ".rb" file in the working directory (recursively) with the following line:
 
-  # -*- immutable: string -*-
+  # frozen_string_literal: true
 
-Notes : 
-- existing (im)?mutable magic comments are replaced
+Notes: 
+- existing frozen_string_literal magic comments are replaced
 - the rest of the file remains unchanged
