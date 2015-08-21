@@ -1,4 +1,4 @@
-# -*- immutable: string -*-
+# frozen_string_literal: true
 
 # A simple library to prepend magic comments for encoding to multiple ".rb" files
 
@@ -13,7 +13,7 @@ module AddMagicComment
 
     directory = options[0] || Dir.pwd
 
-    prefix = "-*- immutable: string -*-\n"
+    prefix = "frozen_string_literal: true"
 
     # TODO : add options for recursivity (and application of the script to a single file)
 
@@ -31,7 +31,7 @@ module AddMagicComment
           lines = file.readlines
 
           # remove current encoding comment(s)
-          while lines[0].match(/^-?# ?(-\*-)? ?(im)?mutable/)
+          while lines[0].match(/^-?# *frozen_string_literal/)
             lines.shift
           end
 
@@ -45,6 +45,6 @@ module AddMagicComment
       end
     end
 
-    puts "Magic comments set for #{count} source files"
+    puts "Magic comments added to #{count} source file(s)"
   end
 end
