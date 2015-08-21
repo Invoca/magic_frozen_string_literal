@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 Gem::Specification.new do |s|
   s.name = %q{magic_frozen_string_literal}
