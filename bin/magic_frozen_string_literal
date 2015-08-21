@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+# A simple tool to prepend magic '# frozen_string_literal: true' comments to multiple ".rb" files
+
+require 'add_magic_comment'
+
+AddMagicComment.process(ARGV)

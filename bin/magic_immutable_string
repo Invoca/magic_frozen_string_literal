@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-# A simple tool to prepend magic comments for immutable: string to multiple ".rb" files
-
-require 'add_magic_comment'
-
-AddMagicComment.process(ARGV)
