@@ -2,8 +2,7 @@
 
 Magic_frozen_string_literal is a little tool that allows you to quickly 
 add the magic comment that indicates that the file
-can safely have its string literals frozen, as will be the default
-in Ruby 3.0.
+can safely have its string literals frozen, as will be {the default in Ruby 3.0}[https://bugs.ruby-lang.org/issues/8976].
 
 Cloned from https://github.com/m-ryan/magic_encoding
 
