@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    magic_frozen_string_literal (0.0.1)
+    magic_frozen_string_literal (0.0.2)
 
 GEM
   remote: https://rubygems.org/

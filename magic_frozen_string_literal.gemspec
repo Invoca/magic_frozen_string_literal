@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = %q{magic_frozen_string_literal}
-  spec.version = "0.0.1"
+  spec.version = "0.0.2"
 
   spec.required_rubygems_version = Gem::Requirement.new(">= 1.3.6") if spec.respond_to? :required_rubygems_version=
   spec.authors = ["Colin Kelley after Jared Roesch after Manuel Ryan"]
