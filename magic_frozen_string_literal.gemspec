@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.required_rubygems_version = Gem::Requirement.new(">= 1.3.6") if spec.respond_to? :required_rubygems_version=
   spec.authors = ["Colin Kelley after Jared Roesch after Manuel Ryan"]
   spec.date = %q{2015-08-21}
-  spec.default_executable = %q{magic_frozen_string_literal}
+  spec.executables = ["magic_frozen_string_literal"]
   spec.email = ["colin@invoca.com"]
   spec.executables = ["magic_frozen_string_literal"]
   spec.files = Dir.glob("{bin,lib}/**/*") + %w(README.rdoc CHANGELOG LICENCE)
