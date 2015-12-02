@@ -9,6 +9,7 @@ Cloned from https://github.com/m-ryan/magic_encoding
 == Installation
 
   gem install magic_frozen_string_literal
+  rbenv rehash
   
 == Usage
 
