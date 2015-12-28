@@ -29,6 +29,7 @@ module AddMagicComment
     EXTENSIONS.each do |ext, comment_style|
       rbfiles = File.join(directory, "**", "*.#{ext}")
       Dir.glob(rbfiles).each do |filename|
+        next unless File.size(filename) > 0
         File.open(filename, "r+") do |file|
           lines = file.readlines
 
@@ -43,6 +44,7 @@ module AddMagicComment
 
           file.pos = 0
           file.puts(lines.join)
+          file.truncate(file.pos)
         end
       end
     end
