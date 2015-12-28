@@ -44,6 +44,7 @@ module AddMagicComment
 
           file.pos = 0
           file.puts(lines.join)
+          file.truncate(file.pos)
         end
       end
     end
