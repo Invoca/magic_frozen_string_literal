@@ -24,3 +24,4 @@ this will prepend every ".rb" file in the working directory (recursively) with t
 Notes: 
 - existing frozen_string_literal magic comments are replaced
 - the rest of the file remains unchanged
+- empty files are not touched
