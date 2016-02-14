@@ -4,7 +4,7 @@
 
 module AddMagicComment
   MAGIC_COMMENT_PREFIX  = "frozen_string_literal"
-  MAGIC_COMMENT_PATTERN = /^(-|(<%))?#\s*#{MAGIC_COMMENT_PREFIX}\s*(%>)?/m
+  MAGIC_COMMENT_PATTERN = /^(-|(<%))?#\s*#{MAGIC_COMMENT_PREFIX}\s*(%>)?/
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
 
   EXTENSION_COMMENTS = {
