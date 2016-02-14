@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |spec|
   spec.name = %q{magic_frozen_string_literal}
-  spec.version = "0.0.3"
+  spec.version = "0.0.4"
 
   spec.required_rubygems_version = Gem::Requirement.new(">= 1.3.6") if spec.respond_to? :required_rubygems_version=
   spec.authors = ["Colin Kelley after Jared Roesch after Manuel Ryan"]
-  spec.date = %q{2015-08-21}
+  spec.date = %q{2016-02-14}
   spec.executables = ["magic_frozen_string_literal"]
   spec.email = ["colin@invoca.com"]
   spec.executables = ["magic_frozen_string_literal"]
