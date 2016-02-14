@@ -41,7 +41,7 @@ module AddMagicComment
           lines = file.readlines
 
           # remove current encoding comment(s)
-          while lines[0].match(MAGIC_COMMENT_PATTERN)
+          while lines[0]&.match(MAGIC_COMMENT_PATTERN)
             lines.shift
           end
 
