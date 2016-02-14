@@ -4,13 +4,14 @@
 
 module AddMagicComment
   MAGIC_COMMENT_PREFIX  = "frozen_string_literal"
-  MAGIC_COMMENT_PATTERN = /^-?# *#{MAGIC_COMMENT_PREFIX}/
+  MAGIC_COMMENT_PATTERN = /^(-|(<%))?#\s*#{MAGIC_COMMENT_PREFIX}\s*(%>)?/m
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
 
   EXTENSIONS = {
     'rb'   => '# {text}',
     'rake' => '# {text}',
     'haml' => '-# {text}',
+    'erb'  => '<%# {text}'
   }
 
   # Options :
@@ -28,6 +29,13 @@ module AddMagicComment
     count = 0
     EXTENSIONS.each do |ext, comment_style|
       rbfiles = File.join(directory, "**", "*.#{ext}")
+      case ext
+        when 'erb'
+          comment = "#{MAGIC_COMMENT} %>\n"
+        else
+          comment = "#{MAGIC_COMMENT}\n"
+      end
+      frozen_literal_string_comment = comment_style.sub('{text}', comment)
       Dir.glob(rbfiles).each do |filename|
         File.open(filename, "r+") do |file|
           lines = file.readlines
@@ -38,7 +46,7 @@ module AddMagicComment
           end
 
           # set current encoding
-          lines.insert(0, comment_style.sub('{text}', MAGIC_COMMENT + "\n"))
+          lines.insert(0, frozen_literal_string_comment)
           count += 1
 
           file.pos = 0
