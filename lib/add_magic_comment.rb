@@ -8,10 +8,10 @@ module AddMagicComment
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
 
   EXTENSIONS = {
-    'rb'   => '# {text}',
-    'rake' => '# {text}',
-    'haml' => '-# {text}',
-    'erb'  => '<%# {text}'
+    'rb'   => "# {text}\n",
+    'rake' => "# {text}\n",
+    'haml' => "-# {text}\n",
+    'erb'  => "<%# {text} %>\n"
   }
 
   # Options :
@@ -28,13 +28,7 @@ module AddMagicComment
 
     count = 0
     EXTENSIONS.each do |ext, comment_style|
-      case ext
-        when 'erb'
-          comment = "#{MAGIC_COMMENT} %>\n"
-        else
-          comment = "#{MAGIC_COMMENT}\n"
-      end
-      frozen_literal_string_comment = comment_style.sub('{text}', comment)
+      frozen_literal_string_comment = comment_style.sub('{text}', MAGIC_COMMENT)
       rbfiles = File.join(directory, '**', "*.#{ext}")
       Dir.glob(rbfiles).each do |filename|
         File.open(filename, 'r+') do |file|
