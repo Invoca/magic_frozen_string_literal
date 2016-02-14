@@ -3,7 +3,7 @@
 # A simple library to prepend magic comments to multiple ".rb" files
 
 module AddMagicComment
-  MAGIC_COMMENT_PREFIX  = "frozen_string_literal"
+  MAGIC_COMMENT_PREFIX  = 'frozen_string_literal'
   MAGIC_COMMENT_PATTERN = /^(-|(<%))?#\s*#{MAGIC_COMMENT_PREFIX}\s*(%>)?/m
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
 
@@ -28,7 +28,6 @@ module AddMagicComment
 
     count = 0
     EXTENSIONS.each do |ext, comment_style|
-      rbfiles = File.join(directory, "**", "*.#{ext}")
       case ext
         when 'erb'
           comment = "#{MAGIC_COMMENT} %>\n"
@@ -36,8 +35,9 @@ module AddMagicComment
           comment = "#{MAGIC_COMMENT}\n"
       end
       frozen_literal_string_comment = comment_style.sub('{text}', comment)
+      rbfiles = File.join(directory, '**', "*.#{ext}")
       Dir.glob(rbfiles).each do |filename|
-        File.open(filename, "r+") do |file|
+        File.open(filename, 'r+') do |file|
           lines = file.readlines
 
           # remove current encoding comment(s)
