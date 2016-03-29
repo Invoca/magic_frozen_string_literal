@@ -16,11 +16,20 @@ module AddMagicComment
 
   def self.process(argv)
     directory = argv.first || Dir.pwd
+    ignore_pattern = Regexp.new(argv[1]) rescue nil
+    # Allow providing as either a Regex or a String
+    if ignore_pattern && ignore_pattern.is_a?(String)
+      ignore_pattern = Regexp.new(ignore_pattern)
+    end
 
     count = 0
     EXTENSION_COMMENTS.each do |ext, comment|
       filename_pattern = File.join(directory, "**", "*.#{ext}")
-      Dir.glob(filename_pattern).each do |filename|
+
+      all_files = Dir.glob(filename_pattern)
+      all_files.reject! { |f| f =~ ignore_pattern } if ignore_pattern
+
+      all_files.each do |filename|
         next unless File.size(filename) > 0
         File.open(filename, "r+") do |file|
           lines = file.readlines
