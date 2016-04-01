@@ -16,7 +16,7 @@ module AddMagicComment
 
   def self.process(argv)
     directory = argv.first || Dir.pwd
-    ignore_pattern = Regexp.new(argv[1]) rescue nil
+    ignore_pattern = argv[1]
     # Allow providing as either a Regex or a String
     if ignore_pattern && ignore_pattern.is_a?(String)
       ignore_pattern = Regexp.new(ignore_pattern)
