@@ -13,15 +13,19 @@ Cloned from https://github.com/m-ryan/magic_encoding
   
 == Usage
 
-you can call the tool from the console with default parameters like so
+You can call the tool from the console with default parameters like so:
 
   magic_frozen_string_literal
 
-this will prepend every ".rb" file in the working directory (recursively) with the following line:
+This will prepend the following line to every ".rb" file in the working directory (recursively):
 
   # frozen_string_literal: true
 
+You can modify files in a different directory by passing its path as an argument:
+
+  magic_frozen_string_literal my-proj/
+
 Notes: 
-- existing frozen_string_literal magic comments are replaced
+- existing +frozen_string_literal+ magic comments are replaced
 - the rest of the file remains unchanged
 - empty files are not touched
