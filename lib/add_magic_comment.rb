@@ -25,12 +25,12 @@ module AddMagicComment
         File.open(filename, "r+") do |file|
           lines = file.readlines
 
-          # remove current encoding comment(s)
+          # remove current magic comment(s)
           while lines.first && lines.first.match(MAGIC_COMMENT_PATTERN)
             lines.shift
           end
 
-          # set current encoding
+          # add magic comment as the first line
           lines.insert(0, comment + "\n")
           count += 1
 
