@@ -10,6 +10,8 @@ module AddMagicComment
   EXTENSION_COMMENTS = {
     "rb"   => "# #{MAGIC_COMMENT}",
     "rake" => "# #{MAGIC_COMMENT}",
+    "rabl" => "# #{MAGIC_COMMENT}",
+    "jbuilder" => "# #{MAGIC_COMMENT}",
     "haml" => "-# #{MAGIC_COMMENT}",
     "erb"  => "<%# #{MAGIC_COMMENT} %>"
   }
