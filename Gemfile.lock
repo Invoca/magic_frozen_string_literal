@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    magic_frozen_string_literal (0.0.4)
+    magic_frozen_string_literal (0.0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -15,3 +15,6 @@ DEPENDENCIES
   bundler (~> 1.7)
   magic_frozen_string_literal!
   rake (~> 10.0)
+
+BUNDLED WITH
+   1.15.1
