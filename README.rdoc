@@ -25,3 +25,4 @@ Notes:
 - existing frozen_string_literal magic comments are replaced
 - the rest of the file remains unchanged
 - empty files are not touched
+- if using Rubocop, consider turning off {EmptyLineAfterMagicComment}[http://www.rubydoc.info/github/bbatsov/RuboCop/RuboCop/Cop/Layout/EmptyLineAfterMagicComment]
