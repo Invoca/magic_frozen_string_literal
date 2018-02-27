@@ -33,7 +33,7 @@ module AddMagicComment
           end
 
           # set current encoding
-          lines.insert(0, comment + "\n")
+          lines.insert(0, comment + "\n\n")
           count += 1
 
           file.pos = 0
