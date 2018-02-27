@@ -13,6 +13,7 @@ module AddMagicComment
     "rabl" => "# #{MAGIC_COMMENT}",
     "jbuilder" => "# #{MAGIC_COMMENT}",
     "haml" => "-# #{MAGIC_COMMENT}",
+    "slim" => "-# #{MAGIC_COMMENT}",
     "erb"  => "<%# #{MAGIC_COMMENT} %>"
   }
 
