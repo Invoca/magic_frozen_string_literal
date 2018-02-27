@@ -28,7 +28,7 @@ module AddMagicComment
           lines = file.readlines
 
           # remove current encoding comment(s)
-          while lines.first && lines.first.match(MAGIC_COMMENT_PATTERN)
+          while lines.first && (lines.first.match(MAGIC_COMMENT_PATTERN) || lines.first.strip == '')
             lines.shift
           end
 
