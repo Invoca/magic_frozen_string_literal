@@ -28,12 +28,12 @@ module AddMagicComment
           lines = file.readlines
 
           # remove current encoding comment(s)
-          while lines.first && lines.first.match(MAGIC_COMMENT_PATTERN)
+          while lines.first && (lines.first.match(MAGIC_COMMENT_PATTERN) || lines.first.strip == '')
             lines.shift
           end
 
           # set current encoding
-          lines.insert(0, comment + "\n")
+          lines.insert(0, comment + "\n\n")
           count += 1
 
           file.pos = 0
