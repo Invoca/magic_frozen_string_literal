@@ -6,6 +6,7 @@ module AddMagicComment
   MAGIC_COMMENT_PREFIX  = "frozen_string_literal"
   MAGIC_COMMENT_PATTERN = /^(-|(<%))?#\s*#{MAGIC_COMMENT_PREFIX}\s*(%>)?/
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
+  EMPTY_LINE_PATTERN    = /^\s$/
 
   EXTENSION_COMMENTS = {
     "rb"   => "# #{MAGIC_COMMENT}",
@@ -28,12 +29,12 @@ module AddMagicComment
           lines = file.readlines
 
           # remove current encoding comment(s)
-          while lines.first && lines.first.match(MAGIC_COMMENT_PATTERN)
+          while lines.first && lines.first.match(MAGIC_COMMENT_PATTERN) || lines.first.match(EMPTY_LINE_PATTERN)
             lines.shift
           end
 
           # set current encoding
-          lines.insert(0, comment + "\n")
+          lines.insert(0, comment + "\n\n")
           count += 1
 
           file.pos = 0
