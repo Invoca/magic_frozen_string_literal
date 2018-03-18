@@ -7,6 +7,7 @@ module AddMagicComment
   MAGIC_COMMENT_PATTERN = /^(-|(<%))?#\s*#{MAGIC_COMMENT_PREFIX}\s*(%>)?/
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true".freeze
   EMPTY_LINE_PATTERN    = /^\s$/
+  SHEBANG_PATTERN       = /^#!/
 
   EXTENSION_COMMENTS = {
     "rb"        => "# #{MAGIC_COMMENT}\n\n",
@@ -28,6 +29,11 @@ module AddMagicComment
         File.open(filename, "r+") do |file|
           lines = file.readlines
           next unless lines.any?
+          count += 1
+
+          if lines.first =~ SHEBANG_PATTERN
+            shebang = lines.shift
+          end
 
           # remove current magic comment(s)
           while lines.first && (lines.first.match(MAGIC_COMMENT_PATTERN) || lines.first.match(EMPTY_LINE_PATTERN))
@@ -36,7 +42,11 @@ module AddMagicComment
 
           # add magic comment as the first line
           lines.unshift(comment)
-          count += 1
+
+          # put shebang back
+          if shebang
+            lines.unshift(shebang)
+          end
 
           file.pos = 0
           file.puts(lines.join)
