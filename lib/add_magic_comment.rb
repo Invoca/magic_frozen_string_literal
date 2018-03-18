@@ -25,12 +25,12 @@ module AddMagicComment
     EXTENSION_COMMENTS.each do |ext, comment|
       filename_pattern = File.join(directory, "**", "*.#{ext}")
       Dir.glob(filename_pattern).each do |filename|
-        next unless File.size(filename) > 0
         File.open(filename, "r+") do |file|
           lines = file.readlines
+          next unless lines.any?
 
           # remove current magic comment(s)
-          while lines.first && lines.first.match(MAGIC_COMMENT_PATTERN) || lines.first.match(EMPTY_LINE_PATTERN)
+          while lines.first && (lines.first.match(MAGIC_COMMENT_PATTERN) || lines.first.match(EMPTY_LINE_PATTERN))
             lines.shift
           end
 
