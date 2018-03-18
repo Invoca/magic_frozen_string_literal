@@ -35,7 +35,7 @@ module AddMagicComment
           end
 
           # add magic comment as the first line
-          lines.insert(0, comment)
+          lines.unshift(comment)
           count += 1
 
           file.pos = 0
