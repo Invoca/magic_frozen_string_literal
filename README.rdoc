@@ -17,9 +17,13 @@ you can call the tool from the console with default parameters like so
 
   magic_frozen_string_literal
 
-this will prepend every ".rb" file in the working directory (recursively) with the following line:
+this will prepend every ".rb", ".rake", ".rabl", ".jbuilder", ".haml", ".erb" file in the working directory (recursively)
+with the following magic comment followed by a blank line:
 
   # frozen_string_literal: true
+
+(".haml" files will have a "-" prefix before comment and no blank line after.
+".erb" files will have the comment inside <% ... %> and no blank line after.)
 
 Notes: 
 - existing frozen_string_literal magic comments are replaced
