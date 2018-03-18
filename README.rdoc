@@ -23,7 +23,7 @@ with the following magic comment followed by a blank line:
   # frozen_string_literal: true
 
 (".haml" and ".slim" files will have a "-" prefix before comment and no blank line after.
-".erb" files will have the comment inside <% ... %> and no blank line after.)
+".erb" files will have the comment inside <% ... -%> and no blank line after.)
 
 The <directory> parameter is optional. It defaults to the current working directory.
 
@@ -32,3 +32,4 @@ Notes:
 - existing +frozen_string_literal+ magic comments are replaced
 - the rest of the file remains unchanged
 - empty files are not touched
+- if the file starts with #! (shebang) that line is preserved and the magic comment will be added just below it
