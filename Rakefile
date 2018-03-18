@@ -12,9 +12,9 @@ task :test do
 
   count = 0
   successes = 0
-  Dir.glob("test-output/*").each do |filename|
+  Dir.glob("test-expected/*").each do |filename|
     count += 1
-    escaped_args = ["test-expected/#{File.basename(filename)}", filename].map { |word| Shellwords.shellescape(word) }
+    escaped_args = [filename, "./test-output/#{File.basename(filename)}"].map { |word| Shellwords.shellescape(word) }
     if system("diff -c #{escaped_args.join(' ')}")
       successes += 1
     end
