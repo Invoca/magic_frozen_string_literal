@@ -10,20 +10,21 @@ module AddMagicComment
   SHEBANG_PATTERN       = /^#!/
 
   EXTENSION_COMMENTS = {
-    "rb"        => "# #{MAGIC_COMMENT}\n\n",
-    "rake"      => "# #{MAGIC_COMMENT}\n\n",
-    "rabl"      => "# #{MAGIC_COMMENT}\n\n",
-    "jbuilder"  => "# #{MAGIC_COMMENT}\n\n",
-    "haml"      => "-# #{MAGIC_COMMENT}\n",
-    "slim"      => "-# #{MAGIC_COMMENT}\n"
+    "*.rb"        => "# #{MAGIC_COMMENT}\n\n",
+    "Rakefile"    => "# #{MAGIC_COMMENT}\n\n",
+    "*.rake"      => "# #{MAGIC_COMMENT}\n\n",
+    "*.rabl"      => "# #{MAGIC_COMMENT}\n\n",
+    "*.jbuilder"  => "# #{MAGIC_COMMENT}\n\n",
+    "*.haml"      => "-# #{MAGIC_COMMENT}\n",
+    "*.slim"      => "-# #{MAGIC_COMMENT}\n"
   }
 
   def self.process(argv)
     directory = argv.first || Dir.pwd
 
     count = 0
-    EXTENSION_COMMENTS.each do |ext, comment|
-      filename_pattern = File.join(directory, "**", "*.#{ext}")
+    EXTENSION_COMMENTS.each do |pattern, comment|
+      filename_pattern = File.join(directory, "**", "#{pattern}")
       Dir.glob(filename_pattern).each do |filename|
         File.open(filename, "r+") do |file|
           lines = file.readlines
