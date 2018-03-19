@@ -15,8 +15,7 @@ module AddMagicComment
     "rabl"      => "# #{MAGIC_COMMENT}\n\n",
     "jbuilder"  => "# #{MAGIC_COMMENT}\n\n",
     "haml"      => "-# #{MAGIC_COMMENT}\n",
-    "slim"      => "-# #{MAGIC_COMMENT}\n",
-    "erb"       => "<%# #{MAGIC_COMMENT} -%>\n"
+    "slim"      => "-# #{MAGIC_COMMENT}\n"
   }
 
   def self.process(argv)
