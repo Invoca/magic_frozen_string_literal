@@ -8,9 +8,9 @@ module AddMagicComment
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
 
   PATTERNS = [
-    {comment: "# #{MAGIC_COMMENT}", extnames: %w[rb rake ru rabl jbuilder]},
-    {comment: "-# #{MAGIC_COMMENT}", extnames: %w[haml slim]},
-    {comment: "<%# #{MAGIC_COMMENT} %>", extnames: %w[erb]},
+    {comment: "# #{MAGIC_COMMENT}", filename_patterns: %w[*.rb *.rake *.ru *.rabl *.jbuilder Gemfile Rakefile]},
+    {comment: "-# #{MAGIC_COMMENT}", filename_patterns: %w[*.haml *.slim]},
+    {comment: "<%# #{MAGIC_COMMENT} %>", filename_patterns: %w[erb]},
   ].freeze
 
   def self.process(argv)
@@ -19,9 +19,8 @@ module AddMagicComment
     count = 0
     PATTERNS.each do |pattern|
       comment = pattern[:comment]
-      pattern[:extnames].each do |ext|
-        filename_pattern = File.join(directory, "**", "*.#{ext}")
-        Dir.glob(filename_pattern).each do |filename|
+      pattern[:filename_patterns].each do |filename_pattern|
+        Dir[File.join(directory, "**", filename_pattern)].each do |filename|
           next unless File.size(filename) > 0
           File.open(filename, "r+") do |file|
             lines = file.readlines
