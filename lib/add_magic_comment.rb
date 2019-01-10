@@ -8,7 +8,7 @@ module AddMagicComment
   MAGIC_COMMENT         = "#{MAGIC_COMMENT_PREFIX}: true"
 
   PATTERNS = [
-    {comment: "# #{MAGIC_COMMENT}", extnames: %w[rb rake rabl jbuilder]},
+    {comment: "# #{MAGIC_COMMENT}", extnames: %w[rb rake ru rabl jbuilder]},
     {comment: "-# #{MAGIC_COMMENT}", extnames: %w[haml slim]},
     {comment: "<%# #{MAGIC_COMMENT} %>", extnames: %w[erb]},
   ].freeze
