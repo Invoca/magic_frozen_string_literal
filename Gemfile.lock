@@ -7,6 +7,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     rake (10.4.2)
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
 
 PLATFORMS
   ruby
@@ -15,6 +18,7 @@ DEPENDENCIES
   bundler (~> 1.7)
   magic_frozen_string_literal!
   rake (~> 10.0)
+  rspec-core (~> 3.8)
 
 BUNDLED WITH
-   1.15.1
+   1.17.2
