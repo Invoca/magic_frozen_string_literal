@@ -17,7 +17,7 @@ Run the tool from the command line:
 
   magic_frozen_string_literal <directory>
 
-this will prepend every "*.rb", "Rakefile", "*.rake", "*.rabl", "*.jbuilder", "*.haml", "*.slim" file in the given <directory> (recursively)
+this will prepend every "Rakefile", "Gemfile", "*.rb", "*.ru", "*.rake", "*.rabl", "*.jbuilder", "*.haml", "*.slim" file in the given <directory> (recursively)
 with the following magic comment followed by a blank line:
 
   # frozen_string_literal: true
@@ -31,4 +31,4 @@ Notes:
 - existing +frozen_string_literal+ magic comments are replaced
 - the rest of the file remains unchanged
 - empty files are not touched
-- if the file starts with #! (shebang) that line is preserved and the magic comment will be added just below it
+- if the file starts with #! (shebang), that line is preserved and the magic comment is added just below it
