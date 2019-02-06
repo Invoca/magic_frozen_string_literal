@@ -28,7 +28,7 @@ module AddMagicComment
     EXTENSION_COMMENTS.each do |pattern, comment|
       filename_pattern = File.join(directory, "**", "#{pattern}")
       Dir.glob(filename_pattern).each do |filename|
-        File.open(filename, "r+") do |file|
+        File.open(filename, "rb+") do |file|
           lines = file.readlines
           next unless lines.any?
           count += 1
