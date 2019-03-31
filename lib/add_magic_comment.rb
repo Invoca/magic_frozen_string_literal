@@ -10,28 +10,27 @@ module AddMagicComment
   SHEBANG_PATTERN       = /^#!/
 
   EXTENSION_COMMENTS = {
-    "*.rb"        => ["# #{MAGIC_COMMENT}", 2],
-    "*.ru"        => ["# #{MAGIC_COMMENT}", 2],
-    "Gemfile"     => ["# #{MAGIC_COMMENT}", 2],
-    "Rakefile"    => ["# #{MAGIC_COMMENT}", 2],
-    "*.rake"      => ["# #{MAGIC_COMMENT}", 2],
-    "*.rabl"      => ["# #{MAGIC_COMMENT}", 2],
-    "*.jbuilder"  => ["# #{MAGIC_COMMENT}", 2],
-    "*.haml"      => ["-# #{MAGIC_COMMENT}", 1],
-    "*.slim"      => ["-# #{MAGIC_COMMENT}", 1]
+    "*.rb"        => "# #{MAGIC_COMMENT}\n\n",
+    "*.ru"        => "# #{MAGIC_COMMENT}\n\n",
+    "Gemfile"     => "# #{MAGIC_COMMENT}\n\n",
+    "Rakefile"    => "# #{MAGIC_COMMENT}\n\n",
+    "*.rake"      => "# #{MAGIC_COMMENT}\n\n",
+    "*.rabl"      => "# #{MAGIC_COMMENT}\n\n",
+    "*.jbuilder"  => "# #{MAGIC_COMMENT}\n\n",
+    "*.haml"      => "-# #{MAGIC_COMMENT}\n",
+    "*.slim"      => "-# #{MAGIC_COMMENT}\n"
   }
 
   def self.process(argv)
     directory = argv.first || Dir.pwd
 
     count = 0
-    EXTENSION_COMMENTS.each do |pattern, (comment, num_nl_codes)|
+    EXTENSION_COMMENTS.each do |pattern, comment|
       filename_pattern = File.join(directory, "**", "#{pattern}")
       Dir.glob(filename_pattern).each do |filename|
         File.open(filename, "rb+") do |file|
-          contents = file.read
-          nl_code = detect_nl_code(contents)
-          lines = contents.lines(nl_code)
+          lines = file.readlines
+          newline = detect_newline(lines.first)
           next unless lines.any?
           count += 1
 
@@ -45,7 +44,7 @@ module AddMagicComment
           end
 
           # add magic comment as the first line
-          lines.unshift("#{comment}#{nl_code * num_nl_codes}")
+          lines.unshift(comment.gsub("\n", newline))
 
           # put shebang back
           if shebang
@@ -62,11 +61,7 @@ module AddMagicComment
     puts "Magic comments added to #{count} source file(s)"
   end
 
-  def self.detect_nl_code(contents)
-    if /(\R)/ =~ contents
-      $1
-    else
-      $/
-    end
+  def self.detect_newline(line)
+    (line[/\R/] if line) || $/
   end
 end
