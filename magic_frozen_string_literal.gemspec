@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name             = "magic_frozen_string_literal"
-  spec.version          = "1.0.3"
+  spec.version          = "1.1.0"
   spec.authors          = ["Colin Kelley after Jared Roesch after Manuel Ryan"]
   spec.email            = ["colin@invoca.com"]
   spec.summary          = "Easily add magic comments '# frozen_string_literal: true' followed by a blank line to multiple Ruby source files"
