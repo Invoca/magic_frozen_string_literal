@@ -28,8 +28,9 @@ module AddMagicComment
     EXTENSION_COMMENTS.each do |pattern, comment|
       filename_pattern = File.join(directory, "**", "#{pattern}")
       Dir.glob(filename_pattern).each do |filename|
-        File.open(filename, "r+") do |file|
+        File.open(filename, "rb+") do |file|
           lines = file.readlines
+          newline = detect_newline(lines.first)
           next unless lines.any?
           count += 1
 
@@ -43,7 +44,7 @@ module AddMagicComment
           end
 
           # add magic comment as the first line
-          lines.unshift(comment)
+          lines.unshift(comment.gsub("\n", newline))
 
           # put shebang back
           if shebang
@@ -51,12 +52,16 @@ module AddMagicComment
           end
 
           file.pos = 0
-          file.puts(lines.join)
+          file.print(*lines)
           file.truncate(file.pos)
         end
       end
     end
 
     puts "Magic comments added to #{count} source file(s)"
+  end
+
+  def self.detect_newline(line)
+    (line[/\R/] if line) || $/
   end
 end
