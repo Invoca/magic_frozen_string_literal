@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../lib/add_magic_comment.rb', __dir__)
+require_relative '../lib/add_magic_comment.rb'
 
 RSpec.describe "acceptance" do
   before { setup_test_files }
