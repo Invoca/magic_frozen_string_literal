@@ -12,9 +12,10 @@ module AddMagicComment
   EXTENSION_COMMENTS = {
     "*.rb"        => "# #{MAGIC_COMMENT}\n\n",
     "*.ru"        => "# #{MAGIC_COMMENT}\n\n",
-    "Gemfile"     => "# #{MAGIC_COMMENT}\n\n",
     "Rakefile"    => "# #{MAGIC_COMMENT}\n\n",
     "*.rake"      => "# #{MAGIC_COMMENT}\n\n",
+    "Gemfile"     => "# #{MAGIC_COMMENT}\n\n",
+    "*.gemspec"   => "# #{MAGIC_COMMENT}\n\n",
     "*.rabl"      => "# #{MAGIC_COMMENT}\n\n",
     "*.jbuilder"  => "# #{MAGIC_COMMENT}\n\n",
     "*.haml"      => "-# #{MAGIC_COMMENT}\n",

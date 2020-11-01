@@ -17,7 +17,7 @@ Run the tool from the command line:
 
   magic_frozen_string_literal <directory>
 
-this will prepend every "Rakefile", "Gemfile", "*.rb", "*.ru", "*.rake", "*.rabl", "*.jbuilder", "*.haml", "*.slim" file in the given <directory> (recursively)
+this will prepend every "*.rb", "*.ru", "Rakefile", "*.rake", "Gemfile", "*.gemspec", "*.rabl", "*.jbuilder", "*.haml", "*.slim" file in the given <directory> (recursively)
 with the following magic comment followed by a blank line:
 
   # frozen_string_literal: true
