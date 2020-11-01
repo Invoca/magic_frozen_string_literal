@@ -10,6 +10,10 @@ Gem::Specification.new do |spec|
   spec.homepage         = "https://github.com/Invoca/magic_frozen_string_literal"
   spec.license          = "MIT"
 
+  spec.metadata = {
+    "allowed_push_host" => "https://rubygems.org"
+  }
+
   spec.files            = Dir.glob("{bin,lib}/**/*") + %w[README.rdoc LICENCE]
   spec.executables      = ["magic_frozen_string_literal"]
   spec.require_paths    = ["lib"]
