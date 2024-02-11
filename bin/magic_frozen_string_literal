@@ -3,5 +3,19 @@
 # A simple tool to prepend magic '# frozen_string_literal: true' comments to multiple ".rb" files
 
 require_relative '../lib/add_magic_comment'
+require "optparse"
 
-AddMagicComment.process(ARGV)
+process_files = false
+OptionParser.new do |opts|
+  opts.banner = "Usage: magic_frozen_string_literal app/ lib/"
+
+  opts.on("-f", "--files", "Apply to specific files instead of files in directories") do |v|
+    process_files = true
+  end
+end.parse!
+
+if process_files
+  AddMagicComment.process_files_at(ARGV)
+else
+  AddMagicComment.process(ARGV)
+end
