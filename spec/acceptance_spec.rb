@@ -14,12 +14,24 @@ RSpec.describe "acceptance" do
     }
   end
 
-  it "inserts magic comments where expected", :aggregate_failures do
+  it "inserts magic comments across directories", :aggregate_failures do
     AddMagicComment.process([directories[:test]])
 
     Dir["#{directories[:test]}/*"].each do |path|
       assert_file_matches_expected(File.basename(path))
     end
+  end
+
+  it "inserts magic comments just into specific files", :aggregate_failures do
+    paths = Dir.glob(directories[:test] + "/*.rb")
+    AddMagicComment.process_files_at(paths)
+
+    rb_paths = Dir["#{directories[:test]}/*.rb"]
+    rb_paths.each do |path|
+      assert_file_matches_expected(File.basename(path))
+    end
+
+    assert_file_not_touched("Rakefile")
   end
 
   def setup_test_files
@@ -29,6 +41,12 @@ RSpec.describe "acceptance" do
 
   def teardown_test_files
     FileUtils.rm_rf(directories[:test])
+  end
+
+  def assert_file_not_touched(filename)
+    processed_path = File.join(directories[:test], filename)
+    expected_path = File.join(directories[:expected], filename)
+    expect(FileUtils).not_to be_identical(processed_path, expected_path)
   end
 
   def assert_file_matches_expected(filename)
